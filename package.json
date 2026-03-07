@@ -1,0 +1,29 @@
+{
+  "name": "discord_bot_base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ./",
+    "refresh": "node ./registerCommands.js",
+    "setupDB": "node ./setupDB.js",
+    "init": "npm run refresh && npm run setupDB",
+    
+    "dev": "NODE_ENV=dev nodemon ./",
+    "dev:refresh": "NODE_ENV=dev npm run refresh",
+    "dev:setupDB": "NODE_ENV=dev npm run setupDB",
+    "dev:init": "NODE_ENV=dev npm run init"
+  },
+  "author": "Scoffgard",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^4.2.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "type": "module"
+}

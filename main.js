@@ -3,7 +3,7 @@ import './utils/cron.js';
 
 import fs from 'node:fs';
 import path from 'node:path';
-import sqlite3 from 'sqlite3';
+import Database from 'better-sqlite3';
 import { Client, Collection, Events, GatewayIntentBits, MessageFlags } from 'discord.js';
 
 import { botMOTD } from './utils/consts.js';
@@ -56,7 +56,7 @@ const registerEvents = async (client) => {
  */
 (() => {
 	// Create database connection and store it globaly
-	globalThis.database = new sqlite3.Database(process.env.DB_PATH);
+	globalThis.database = new Database(process.env.DB_PATH);
 
 	// Create discord client and store it globaly
 	const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
@@ -74,7 +74,6 @@ const registerEvents = async (client) => {
 		console.log(`[SUCCESS] Logged in as ${readyClient.user.tag}!`);
 	
 		client.user.setPresence({ activities: [{ name: botMOTD, type: 3 }], status: 'online'});
-	
 	});
 	
 	

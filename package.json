@@ -8,7 +8,6 @@
     "refresh": "node ./registerCommands.js",
     "setupDB": "node ./setupDB.js",
     "init": "npm run refresh && npm run setupDB",
-    
     "dev": "NODE_ENV=dev nodemon ./",
     "dev:refresh": "NODE_ENV=dev npm run refresh",
     "dev:setupDB": "NODE_ENV=dev npm run setupDB",
@@ -17,10 +16,10 @@
   "author": "Scoffgard",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^12.10.0",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
-    "node-cron": "^4.2.1",
-    "sqlite3": "^5.1.7"
+    "node-cron": "^4.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

@@ -1,31 +1,25 @@
 import { botImageUrl, botName } from "./consts.js";
 
 /**
- * Execute the db.all function async
- * @param  {...any} args Args to pass to the function
- * @returns Promise for the function
+ * Make a db.all request to the database
+ * @param {string} req The sql command to execture
+ * @param {any[]} [args] The parameters to populate the request with (following better-sqlite3 logic)
+ * @returns {Array} Results of the request
  */
-export const allAsync = (...args) => {
-	return new Promise((resolve, reject) => {
-		globalThis.database.all(...args, (err, result) => {
-			if (err) reject(err);
-			resolve(result);
-		})
-	})
+export const dbAll = (req, args = []) => {
+	const stmt = globalThis.database.prepare(req);
+	return stmt.all(...args);
 }
 
 /**
- * Execute the db.run function async
- * @param  {...any} args Args to pass to the function
- * @returns Promise for the function
+ * Make a db.run request to the database
+ * @param {string} req The sql command to do
+ * @param {any[]} args The parameters to populate the request with (following better-sqlite3 logic)
+ * @returns {RunResult} The results of the run instruction
  */
-export const runAsync = (...args) => {
-	return new Promise((resolve, reject) => {
-		globalThis.database.run(...args, function (err) {
-			if (err) reject(err);
-			resolve(this.lastID);
-		})
-	})
+export const dbRun = (req, args = []) => {
+	const stmt = globalThis.database.prepare(req);
+	return stmt.run(...args);
 }
 
 /**
